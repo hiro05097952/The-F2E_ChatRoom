@@ -3,13 +3,13 @@
     集合{}(全大寫)  =>  文件{}(小駝峰)  =>  欄位(key)
 
 ### Login 登入頁面
-    * 功能：隨機命名，設定名字
-    * 集合資料：{ACCOUNT} => {name} => [random]
+    功能：隨機命名，設定名字
+    集合資料：{ACCOUNT} => {name} => [random]
                                    =>  [users]
-    * 取得資料：userName => '集點送紅利' 存進 localStrage
+    取得資料：userName => '集點送紅利' 存進 localStrage
 
 ### Home 首頁
-    * 組件：navbar+tototalks+addpen
+    組件：navbar + tototalks + addpen
 
 ### TodaysTopic 本日話題聊天室
     1. 集合資料：{TODAYTOPIC} => {chatRoom} => todayTitle : 毛小孩
@@ -28,14 +28,14 @@
       }
 
     3. 小筆記
-    * ps.1 辨別自己or別人: 對照 userName 並加上 class="me"
-    * ps.2 聊天室訊息顏色: users.index % 4 === 0藍/1黃/2紫/3橘 
-           (線上使用者名單位置去除4種顏色，取餘數)
-    * ps.3 4種顏色
-           pink: #F6C2C2; -- default
-           blue: #AFCAFF;
-           purple: #E8CDF3;
-           yellow: #F3E171;
+    ps.1 辨別自己or別人: 對照 userName 並加上 class="me"
+    ps.2 聊天室訊息顏色: users.index % 4 === 0藍/1黃/2紫/3橘 
+         (線上使用者名單位置去除4種顏色，取餘數)
+    ps.3 4種顏色
+         pink: #F6C2C2; -- default
+         blue: #AFCAFF;
+         purple: #E8CDF3;
+         yellow: #F3E171;
 
 
 ### TotoTalk
