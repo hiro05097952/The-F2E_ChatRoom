@@ -15,7 +15,7 @@ npm run build
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
-### 小提示
+## 小提示
 ``` bash
 ＊ 上傳圖片功能尚未做出
 ＊ 因為登入名稱還沒寫得很完善，如果之前登入過的話請直接在路徑後面加上home進入首頁
