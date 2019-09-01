@@ -1,0 +1,19 @@
+.addWrap{
+  height: 62px;
+  width: 62px;
+  background-color: white;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 20px;
+  right: 24px;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.44);
+  cursor: pointer;
+  #add{
+      display: block;
+      background: url(../assets/pencil.svg) center center no-repeat;
+      background-size: contain;
+      height: 26px;
+      width: 26px;
+      margin: 18px auto;
+  }
+}

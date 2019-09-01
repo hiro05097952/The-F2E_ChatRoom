@@ -1,0 +1,85 @@
+.content{
+  margin-top: 173px;
+  height: 77vh;
+  padding: 0 24px 55px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  &.totostyle{
+    margin-top: 135px;
+  }
+  ul{
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    li{
+      margin-top: 15px;
+      p.account{
+        font-size: 12px;
+        letter-spacing: 1.3px;
+        color: #FF6565;
+        line-height: 18px;
+      }
+      div.talkbox{
+        border: 1px solid #FF6565;
+        border-radius: 0 15px 15px 15px;
+        display: inline-block;
+        padding: 9px 20px 12px 16px;
+        margin: 5px 0 0 0;
+        h3{
+          font-size: 12px;
+          letter-spacing: 1.3px;
+          display: inline-block;
+          max-width: 50vw;
+          word-wrap: break-word;
+          line-height: 18px;
+        }
+      }
+      img{
+        margin-top: 5px;
+        display: inline-block;
+        width: 112px;
+        height: 116px;
+      }
+      &.me.me{
+        align-self: flex-end;
+        p.account{
+          color: #102977;
+          text-align: right;
+        }
+        div.talkbox{
+          background-color: #253E8C;
+          border-color: #102977;
+          border-radius: 15px 0 15px 15px;
+          margin: 5px 0 0 0;
+          h3{
+            color: white;
+          }
+        }
+      }
+      &.blue{
+        p.account{
+          color: rgb(59, 91, 156);
+        }
+        div.talkbox{
+          border-color: rgb(59, 91, 156);
+        }
+      }
+      &.purple{
+        p.account{
+          color: #E8CDF3;
+        }
+        div.talkbox{
+          border-color: #E8CDF3;
+        }
+      }
+      &.green{
+        p.account{
+          color: rgb(79, 134, 71);
+        }
+        div.talkbox{
+          border-color: rgb(79, 134, 71);
+        }
+      }
+    }
+  }
+}

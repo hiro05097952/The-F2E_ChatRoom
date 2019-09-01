@@ -1,0 +1,15 @@
+@mixin commentIcon {
+  letter-spacing: 1.3px;
+  position: relative;
+  font-size: 12px;
+  &::after{
+      content: '';
+      position: absolute;
+      right: -20px;
+      top: -2px;
+      background: url(../assets/comment.svg) center center no-repeat;
+      background-size: contain;
+      height: 15px;
+      width: 15px;
+  }
+}

@@ -1,0 +1,68 @@
+.typeBox{
+  position: fixed;
+  bottom: 0;
+  background-color: white;
+  height: 55px;
+  width: 100vw;
+  box-shadow: 0 -2px 4px 0 rgba(0,0,0,0.06);
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 10px 15px 0;
+  box-sizing: border-box;
+  transition: height .5s;
+  &.stampOpen{
+    height: 185px;
+  }
+  i{
+    display: inline-block;
+    height: 25px;
+    width: 25px;
+    &#image{
+      background: url(../assets/picture.svg) center center no-repeat;
+      background-size: contain;
+    }
+    &#stamp{
+      background: url(../assets/smile.svg) center center no-repeat;
+      background-size: contain;
+    }
+    &#send{
+      background: url(../assets/right-arrow.svg) center center no-repeat;
+      background-size: contain;
+    }
+  }
+  input{
+    height: 30px;
+    width: 60%;
+    border-radius: 18px;
+    border: 1px solid #102977;
+    background-color: #F7F7F7;
+    outline: none;
+    padding-left: 10px;
+    box-sizing: border-box;
+  }
+  div.stampBox{
+    position: absolute;
+    height: 145px;
+    width: 100%;
+    bottom: 0px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 15px;
+    box-sizing: border-box;
+    img{
+      height: 100px;
+      width: 100px;
+      &:hover, &:active{
+        filter: opacity(0.5);
+      }
+    }
+  }
+  .fade-enter-active {
+    transition: all .3s step-end;
+  }
+  .fade-enter, .fade-leave-to{
+    opacity: 0;
+  }
+}
