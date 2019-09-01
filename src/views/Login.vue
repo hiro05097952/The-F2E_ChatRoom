@@ -7,7 +7,7 @@
             <h2>你的名字是⋯⋯？</h2>
             <label>
                 <input type="text" class="name" placeholder="輸入暱稱" v-model="newName">
-                <div class="buttonWrap">
+                <div class="buttonWrap" @click="$router.push('todaystopic')">
                   <button class="random" @click="getName"></button>
                 </div>
             </label>
