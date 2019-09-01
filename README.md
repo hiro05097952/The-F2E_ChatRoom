@@ -17,7 +17,8 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ### 小提示
 ``` bash
-因為登入名稱還沒寫得很完善，如果之前登入過的話請直接在路徑後面加上home進入首頁
+＊ 上傳圖片功能尚未做出
+＊ 因為登入名稱還沒寫得很完善，如果之前登入過的話請直接在路徑後面加上home進入首頁
 ```
 # FireBase 資料說明
 ### FireStore 命名
@@ -89,17 +90,20 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 這週的關卡...量比想像中來得太多，有些功能還沒做到齊全
 還是單純是我挑了個內容比較豐富的設計(!?
 
+首先卡關的是在偷偷說的不規則排版，找了很多gird和flex的資料都沒看到
+最後發現v-masonry這套件，使用方法非常簡單！
+
 這次使用的資料庫是firebase，雖然google寫得超好懂的（但第一次碰還是卡了很久
-
-在建構資料層以及命名參考了這篇文章
+在建構聊天室資料層以及命名是參考了這篇文章
 [Cloud Firestore β: (4) 規劃一個聊天室的資料模型](https://ithelp.ithome.com.tw/articles/10205855)
-
-另外還要去規劃資料該儲存在 vuex 還是 firebase ，
+另外在規劃資料該儲存在 vuex 還是 firebase 上也想了很久，
 其中困擾蠻久的是userName... 最後決定存在localStorage
+
+新增偷偷說的頁面，因為在瀏覽聊天室時沒有貼圖，
+所以貼圖就沒做出來了（？
+但聊天室內一樣可以使用！
 
 還有這次嘗試把組件分的較多較明確
 但到中間發現自己的命名實在太爛一直搞混
-只好寫了個小筆記邊紀錄哪個組件取什麼資料）
-
-在新增偷偷說的頁面，
+只好寫了個小筆記邊紀錄哪個組件取什麼資料)
 ```
