@@ -1,7 +1,7 @@
 <template>
   <ul class="nav">
-    <li :class="{'active' : $route.name === 'Home'}">
-      <a href="#" @click.prevent="go('/home')">首頁</a>
+    <li :class="{'active' : $route.path.toLowerCase().includes('home')}">
+      <a href="#" @click.prevent="go('/home')">{{ !isAdmin ? '首頁' : '名字' }}</a>
     </li>
     <li :class="{'active' : $route.name === 'TodaysTopic'}">
       <a href="#" @click.prevent="go('/todaysTopic')">本日話題</a>
@@ -11,7 +11,7 @@
       <a href="#" @click.prevent="go('/tototalk')">偷偷說</a>
     </li>
     <li>
-      <a href="#" @click.prevent>{{ userName }}</a>
+      <a href="#" @click.prevent>{{ $store.state.userName }}</a>
     </li>
   </ul>
 </template>
@@ -21,20 +21,26 @@ export default {
   name: 'navbar',
   data() {
     return {
-      userName: '',
+      isAdmin: false,
     };
+  },
+  created() {
+    if (this.$route.name.toLowerCase().includes('admin')) {
+      this.isAdmin = true;
+      this.$store.commit('setName', 'Admin');
+    } else if (localStorage.getItem('userName')) {
+      const name = JSON.parse(localStorage.getItem('userName'));
+      this.$store.commit('setName', name);
+    }
   },
   methods: {
     go(value) {
+      if (this.isAdmin) {
+        this.$router.push(`/admin/${value}`);
+        return;
+      }
       this.$router.push(value);
     },
-  },
-  mounted() {
-    if (localStorage.getItem('userName')) {
-      const name = JSON.parse(localStorage.getItem('userName'));
-      this.userName = name;
-      this.$store.commit('setName', name);
-    }
   },
 };
 </script>

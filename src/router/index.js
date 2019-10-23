@@ -8,6 +8,8 @@ import TotoChat from '@/views/TotoChat';
 import TotoHome from '@/views/TotoHome';
 import TotoAdd from '@/views/TotoAdd';
 
+import AdminHome from '@/views/Admin_home';
+
 
 Vue.use(Router);
 
@@ -52,6 +54,15 @@ export default new Router({
       path: '/todaystopic',
       name: 'TodaysTopic',
       component: TodaysTopic,
+    },
+    // admin
+    {
+      path: '/admin/home',
+      name: 'AdminHome',
+      component: AdminHome,
+      // children: {
+
+      // },
     },
   ],
 });
