@@ -109,7 +109,6 @@ export default {
     timeConvertor(time) {
       let now = +(new Date());
       now -= 1000 * 60 * 60 * 8;
-      console.log('now: ', now);
       const dt = new Date(time.replace(/-/g, '/').replace(/T/g, ' ').replace(/Z/, ''));
 
       if ((now - dt) < 1000 * 60) {

@@ -5,8 +5,8 @@
     <div class="content">
       <h2>本日話題</h2>
       <div class="today">
-        <h3>#{{ topic.todayTitle }}</h3>
-        <i>{{ topic.length }}</i>
+        <h3>{{ '#' + topic.title }}</h3>
+        <i>{{ topic.message_qty }}</i>
       </div>
       <tototalks></tototalks>
     </div>
@@ -19,7 +19,6 @@ import tototalks from '@/components/tototalks';
 import addPen from '@/components/addPen';
 import navbar from '@/components/navbar';
 
-const db = window.firebase.firestore();
 
 export default {
   name: 'home',
@@ -34,7 +33,10 @@ export default {
     navbar,
   },
   created() {
-    this.$bind('topic', db.collection('TODAYTOPIC').doc('chatRoom'));
+    this.axios.get(`${process.env.API}/api/roomlist?type=days_topic`).then((response) => {
+      // console.log(response.data);
+      this.topic = response.data[0];
+    });
   },
 };
 </script>

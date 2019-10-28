@@ -7,8 +7,8 @@
             <h2>你的名字是⋯⋯？</h2>
             <label>
                 <input type="text" class="name" placeholder="輸入暱稱" v-model="newName">
-                <div class="buttonWrap" @click="$router.push('todaystopic')">
-                  <button class="random" @click="getName"></button>
+                <div class="buttonWrap" @click="getRandomName">
+                  <button class="random"></button>
                 </div>
             </label>
             <button class="startChat" @click="login">開始聊天</button>
@@ -17,42 +17,33 @@
 </template>
 
 <script>
-const db = window.firebase.firestore();
-
 export default {
   name: 'login',
   data() {
     return {
       newName: '',
-      name: {},
     };
   },
-  firestore: {
-    name: db.collection('ACCOUNT').doc('name'),
-  },
   methods: {
-    getName() {
-      const index = Math.floor(Math.random() * this.name.random.length);
-      this.newName = this.name.random[index];
+    getRandomName() {
+      this.axios.get(`${process.env.API}/api/name`).then((response) => {
+        // console.log(response.data);
+        this.newName = response.data;
+      });
     },
     login() {
-      if (![...this.name.users].includes(this.newName)) {
-        // 加入線上
-        this.name.users.push(this.newName);
-        db.collection('ACCOUNT').doc('name').update({
-          users: this.name.users,
-        });
-        // 設定userName在local
-        this.save('userName', this.newName);
-        // 進入首頁
-        this.$router.push('home');
-      } else {
-        // eslint-disable-next-line no-alert
-        alert('此暱稱已有人使用囉(｡･ω･｡)');
-      }
-    },
-    save(name, value) {
-      localStorage.setItem(name, JSON.stringify(value));
+      this.axios.post(`${process.env.API}/api/login`, {
+        username: this.newName,
+      }).then((response) => {
+        // console.log(response.data);
+        if (response.data.success) {
+          this.$store.commit('setName', this.newName);
+          // 進入首頁
+          this.$router.push('home');
+        } else {
+          alert('此暱稱已有人使用囉(｡･ω･｡)');
+        }
+      });
     },
   },
 };

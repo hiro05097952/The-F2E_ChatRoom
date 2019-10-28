@@ -3,9 +3,9 @@
     <ul>
       <li v-for="(item, key) in msg" :key="key"
       :class="{'me' : item.sender === $store.state.userName,
-      'blue': (name.users.indexOf(item.sender)+1) % 4 === 2,
-      'purple': (name.users.indexOf(item.sender)+1) % 4 === 3,
-      'green': (name.users.indexOf(item.sender)+1) % 4 === 0}">
+      'blue': (name.indexOf(item.sender)+1) % 4 === 2,
+      'purple': (name.indexOf(item.sender)+1) % 4 === 3,
+      'green': (name.indexOf(item.sender)+1) % 4 === 0}">
         <p class="account">{{item.sender}}</p>
         <div class="talkbox" v-if="item.text">
           <h3>{{item.text}}</h3>
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-const db = window.firebase.firestore();
+// const db = window.firebase.firestore();
 
 export default {
   name: 'chatContent',
@@ -27,18 +27,33 @@ export default {
       name: [],
     };
   },
-  firestore: {
-    name: db.collection('ACCOUNT').doc('name'),
-  },
   created() {
-    // 根據路由取得不同聊天訊息
-    if (this.$route.name === 'TodaysTopic') {
-      this.$bind('msg', db.collection('TODAYTOPIC').doc('chatRoom').collection('MESSAGE'));
-    } else {
-      this.$bind('msg', db.collection('TOTOTALK').doc(this.$route.params.roomID).collection('MESSAGE'));
-    }
+    this.getMessage();
   },
   methods: {
+    getMessage() {
+      // 根據路由取得不同聊天訊息
+      const vm = this;
+      let sucket = '';
+      let url = '';
+      if (this.$route.name === 'TodaysTopic') {
+        url = `${process.env.API}/api/message?type=daystopic`;
+        sucket = 'getTopicMessage';
+      } else {
+        url = `${process.env.API}/api/message?type=tototalk&roomid=${this.$route.params.roomID}`;
+        sucket = 'getTotoMessage';
+      }
+
+      this.axios.get(url).then((response) => {
+        vm.msg = response.data;
+        vm.name = response.data.map(item => item.sender);
+        // 開啟接收 socket 訊息
+        vm.sockets.subscribe(sucket, (data) => {
+          console.log(sucket, data);
+          vm.msg.push(data);
+        });
+      });
+    },
     imgConvertor(value) {
       // eslint-disable-next-line global-require, import/no-dynamic-require
       return require(`@/assets/emoticon_${value}.png`);
@@ -48,7 +63,7 @@ export default {
     msg() {
       // 當訊息新增時捲動到最底
       this.$nextTick(() => {
-        this.$refs.content.scrollTop = this.$refs.content.scrollHeight;
+        this.$refs.content.scrollTop = this.$refs.content.scrollHeight + 200;
       });
     },
   },

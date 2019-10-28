@@ -15,8 +15,6 @@
 </template>
 
 <script>
-const db = window.firebase.firestore();
-
 export default {
   name: 'typebar',
   data() {
@@ -44,60 +42,60 @@ export default {
     };
   },
   created() {
-    const vm = this;
-    if (this.$route.name === 'TodaysTopic') {
-      this.$bind('topic', db.collection('TODAYTOPIC').doc('chatRoom')).then((item) => {
-        vm.$store.commit('setTopic', {
-          length: item.length,
-          todayTitle: item.todayTitle,
-        });
-        this.length = item.length;
-      });
-    } else {
-      this.$bind('roomInfo', db.collection('TOTOTALK').doc(this.$route.params.roomID)).then((item) => {
-        vm.$store.commit('setTotoChat', {
-          length: item.length,
-          color: item.color,
-          title: item.title,
-          poster: item.poster,
-        });
-        this.length = item.length;
-      });
-    }
+    this.getRoomInfo();
   },
   methods: {
+    getRoomInfo() {
+      // 取得 topic 聊天室資料
+      const vm = this;
+      if (this.$route.name === 'TodaysTopic') {
+        this.axios.get(`${process.env.API}/api/roomlist?type=days_topic`).then((response) => {
+          // console.log(response.data);
+          vm.$store.commit('setTopic', {
+            length: response.data[0].message_qty,
+            todayTitle: response.data[0].title,
+          });
+          // 送出訊息後增加 訊息數量
+          // vm.length = response.data[0].message_qty;
+        });
+      } else {
+        this.axios.get(`${process.env.API}/api/roomlist?type=tototalk&roomid=${this.$route.params.roomID}`)
+          .then((response) => {
+            console.log(response.data);
+            vm.$store.commit('setTotoChat', {
+              length: response.data[0].message_qty,
+              title: response.data[0].title,
+              color: response.data[0].color,
+              poster: response.data[0].poster,
+            });
+            // vm.length = response.data[0].message_qty;
+          });
+      }
+    },
     sendMessage(type, value) {
       if (this.text === '' && type === 'text') { return; }
-      // 集合 文件
-      const col = this.$route.name === 'TodaysTopic' ? 'TODAYTOPIC' : 'TOTOTALK';
-      const document = this.$route.name === 'TodaysTopic' ? 'chatRoom' : this.$route.params.roomID;
-      const ob = type === 'text' ? {
-        sender: this.$store.state.userName,
-        text: this.text,
-      } : {
-        sender: this.$store.state.userName,
-        stamp: value,
-      };
       // 手動增加length
-      this.length += 1;
-      db.collection(col).doc(document).update({
-        length: this.length,
-      });
+      // this.length += 1;
+      // db.collection(col).doc(document).update({
+      //   length: this.length,
+      // });
       // 新增聊天訊息
-      db.collection(col).doc(document).collection('MESSAGE')
-        .doc(`message${this.covertor(this.length)}`)
-        .set(ob);
+      const config = {
+        sender: this.$store.state.userName,
+      };
+      const sendRoom = this.$route.name === 'TodaysTopic' ? 'getTopicMessage' : 'getTotoMessage';
+      if (type === 'text') {
+        config.text = this.text;
+      } else {
+        config.stamp = value;
+      }
+      if (this.$route.params.roomID) {
+        config.room_id = this.$route.params.roomID;
+      }
+      this.$socket.emit(sendRoom, config);
       // 完成後清除輸入框
       this.text = '';
       this.stampSwitch = false;
-    },
-    covertor(value) {
-      if (value < 10) {
-        return `00${String(value)}`;
-      } else if (value < 100) {
-        return `0${String(value)}`;
-      }
-      return String(value);
     },
     alert() {
       alert('此功能尚未開放');

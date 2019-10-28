@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Login from '@/views/Login';
 import Home from '@/views/Home';
-import TotoTalk from '@/views/TotoTalk';
 import TodaysTopic from '@/views/TodaysTopic';
 import TotoChat from '@/views/TotoChat';
 import TotoHome from '@/views/TotoHome';
@@ -29,27 +28,23 @@ export default new Router({
       name: 'Home',
       component: Home,
     },
+    // tototalk
     {
-      path: '/tototalk',
-      component: TotoTalk,
-      children: [
-        {
-          path: '',
-          name: 'TotoTalk',
-          component: TotoHome,
-        },
-        {
-          path: 'totochat/:roomID',
-          name: 'TotoChat',
-          component: TotoChat,
-        },
-        {
-          path: 'totoadd',
-          name: 'TotoAdd',
-          component: TotoAdd,
-        },
-      ],
+      path: '/tototalk/totohome',
+      name: 'TotoTalk',
+      component: TotoHome,
     },
+    {
+      path: 'tototalk/totochat/:roomID',
+      name: 'TotoChat',
+      component: TotoChat,
+    },
+    {
+      path: 'tototalk/totoadd',
+      name: 'TotoAdd',
+      component: TotoAdd,
+    },
+    // days topic
     {
       path: '/todaystopic',
       name: 'TodaysTopic',
