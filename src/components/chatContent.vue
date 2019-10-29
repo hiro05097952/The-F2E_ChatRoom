@@ -1,6 +1,6 @@
 <template>
-  <div class="content" :class="{'totostyle' : $route.name === 'TotoChat'}" ref="content">
-    <ul>
+  <div class="content" :class="{'totostyle' : $route.name === 'TotoChat'}">
+    <ul ref="content">
       <li v-for="(item, key) in msg" :key="key"
       :class="{'me' : item.sender === $store.state.userName,
       'blue': (name.indexOf(item.sender)+1) % 4 === 2,
@@ -17,8 +17,6 @@
 </template>
 
 <script>
-// const db = window.firebase.firestore();
-
 export default {
   name: 'chatContent',
   data() {
@@ -63,7 +61,7 @@ export default {
     msg() {
       // 當訊息新增時捲動到最底
       this.$nextTick(() => {
-        this.$refs.content.scrollTop = this.$refs.content.scrollHeight + 200;
+        this.$refs.content.scrollTop = this.$refs.content.scrollHeight;
       });
     },
   },

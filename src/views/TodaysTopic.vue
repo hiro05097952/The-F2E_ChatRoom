@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="todaysTopic">
     <navbar></navbar>
     <div class="today">
       <h3>#{{ $store.state.topic.todayTitle }}</h3>

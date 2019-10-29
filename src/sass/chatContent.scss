@@ -1,16 +1,24 @@
 .content{
-  margin-top: 173px;
-  height: 77vh;
-  padding: 0 24px 55px;
-  overflow-y: auto;
+  height: 100vh;
+  padding: 175px 0 55px;
+  overflow: hidden;
   box-sizing: border-box;
   &.totostyle{
-    margin-top: 135px;
+    padding-top: 135px;
+  }
+  ::-webkit-scrollbar{
+    width: 5px;
+  }
+  ::-webkit-scrollbar-thumb{
+    background: #BDBDBD;
   }
   ul{
-    margin-top: 5px;
     display: flex;
     flex-direction: column;
+    overflow: auto;
+    height: 100%;
+    padding: 10px 24px 20px;
+    box-sizing: border-box;
     li{
       margin-top: 15px;
       p.account{

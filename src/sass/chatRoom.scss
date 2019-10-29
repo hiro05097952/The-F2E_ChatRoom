@@ -1,8 +1,8 @@
 @import '_mixin';
 
-#app{
+#todaysTopic, #totochat{
   .today, .tototalk{
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     height: 173px;
@@ -39,13 +39,12 @@
     }
     p{
       margin-top: 30px;
-      margin-right: 80px;
     }
     i{
       &#commentIcon{
-        position: absolute;
-        bottom: -5px;
-        right: 120px;
+        margin: 0 0 0 20px;
+        display: inline-block;
+        height: 20px;
         &::after{
           top: 6px;
         }

@@ -1,11 +1,12 @@
 <template>
-  <div id="app">
+  <div id="totochat">
     <navbar></navbar>
     <div class="tototalk" @click="isClose = !isClose" :class="{'close' : isClose}"
     :style="{background: $store.state.toto.color}">
       <h3>{{$store.state.toto.title}}</h3>
-      <p class="account">{{$store.state.toto.poster}}</p>
-      <i id="commentIcon">{{$store.state.toto.length}}</i>
+      <p class="account">{{$store.state.toto.poster}}
+        <i id="commentIcon">{{ $store.state.toto.length }}</i>
+      </p>
       <i id="arrow"></i>
     </div>
     <chatContent></chatContent>

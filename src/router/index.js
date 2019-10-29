@@ -35,12 +35,12 @@ export default new Router({
       component: TotoHome,
     },
     {
-      path: 'tototalk/totochat/:roomID',
+      path: '/tototalk/totochat/:roomID',
       name: 'TotoChat',
       component: TotoChat,
     },
     {
-      path: 'tototalk/totoadd',
+      path: '/tototalk/totoadd',
       name: 'TotoAdd',
       component: TotoAdd,
     },

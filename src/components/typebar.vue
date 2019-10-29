@@ -3,7 +3,7 @@
     <i id="image" @click="alert"></i>
     <i id="stamp" @click="stampSwitch = !stampSwitch">
     </i>
-    <input type="text" v-model="text" @keyup.enter="sendMessage('text')">
+    <input type="text" v-model="text" @keypress.13="sendMessage('text')">
     <i id="send" @click="sendMessage('text')"></i>
     <transition name="fade">
       <div class="stampBox" v-if="stampSwitch">
@@ -21,7 +21,6 @@ export default {
     return {
       text: '',
       topic: [],
-      length: 0,
       stampSwitch: false,
       stamp: [{
         name: 'all',
@@ -55,8 +54,6 @@ export default {
             length: response.data[0].message_qty,
             todayTitle: response.data[0].title,
           });
-          // 送出訊息後增加 訊息數量
-          // vm.length = response.data[0].message_qty;
         });
       } else {
         this.axios.get(`${process.env.API}/api/roomlist?type=tototalk&roomid=${this.$route.params.roomID}`)
@@ -68,17 +65,11 @@ export default {
               color: response.data[0].color,
               poster: response.data[0].poster,
             });
-            // vm.length = response.data[0].message_qty;
           });
       }
     },
     sendMessage(type, value) {
       if (this.text === '' && type === 'text') { return; }
-      // 手動增加length
-      // this.length += 1;
-      // db.collection(col).doc(document).update({
-      //   length: this.length,
-      // });
       // 新增聊天訊息
       const config = {
         sender: this.$store.state.userName,

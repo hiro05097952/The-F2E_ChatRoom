@@ -13,8 +13,6 @@
 </template>
 
 <script>
-// const db = window.firebase.firestore();
-
 export default {
   name: 'tototalks',
   data() {
@@ -23,12 +21,8 @@ export default {
     };
   },
   created() {
-    // this.$bind('tototalk', db.collection('TOTOTALK')).then(() => {
-    //   this.$store.commit('setTotoChat', {
-    //     totoRooms: this.tototalk.length });
-    // });
-
     this.axios.get(`${process.env.API}/api/roomlist?type=tototalk`).then((response) => {
+      console.log('偷偷說:', response.data);
       this.tototalk = response.data;
     });
   },

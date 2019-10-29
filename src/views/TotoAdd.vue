@@ -4,7 +4,7 @@
     <div class="bk"></div>
     <div class="content">
       <h2>想說什麼⋯⋯？</h2>
-      <textarea v-model="text" placeholder="偷偷輸入你想說的話吧(ゝ∀･)b" maxlength="150">
+      <textarea v-model="text" placeholder="偷偷輸入你想說的話吧(ゝ∀･)b" maxlength="100">
       </textarea>
       <div class="colorbar">
         <input type="radio" name="color" value="#AFCAFF" v-model="radio" id="blue">
@@ -28,8 +28,6 @@
 <script>
 import navbar from '@/components/navbar';
 
-const db = window.firebase.firestore();
-
 export default {
   name: 'TotoAdd',
   data() {
@@ -48,21 +46,19 @@ export default {
         alert('你的偷偷說太長了會被發現Σ(ﾟдﾟ)！');
         return;
       }
-      const id = this.convertor(this.$store.state.toto.totoRooms + 1);
-      db.collection('TOTOTALK').doc(`toto${id}`).set({
+      this.axios.post(`${process.env.API}/api/addtoto`, {
         color: this.radio,
-        length: 0,
         poster: this.$store.state.userName,
-        roomID: id,
         title: this.text,
+      }).then((response) => {
+        // console.log(response.data);
+        if (response.data.success) {
+          this.text = '';
+          this.$router.replace('/tototalk/totohome');
+        } else {
+          alert(response.data.success);
+        }
       });
-      this.$router.replace('/tototalk');
-    },
-    convertor(value) {
-      if (value < 10) {
-        return `0${String(value)}`;
-      }
-      return value;
     },
   },
 };
