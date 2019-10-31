@@ -18,8 +18,9 @@ Vue.use(VueAxios, axios);
 axios.defaults.withCredentials = true;
 // 進入聊天室
 Vue.use(new VueSocketIO({
-  // debug: true,
-  connection: 'http://localhost:3000',
+  debug: true,
+  // connection: 'http://localhost:3000',
+  connection: process.env.API,
 }));
 
 /* eslint-disable no-new */
