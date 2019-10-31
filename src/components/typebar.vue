@@ -58,7 +58,7 @@ export default {
       } else {
         this.axios.get(`${process.env.API}/api/roomlist?type=tototalk&roomid=${this.$route.params.roomID}`)
           .then((response) => {
-            console.log(response.data);
+            // console.log(response.data);
             vm.$store.commit('setTotoChat', {
               length: response.data[0].message_qty,
               title: response.data[0].title,

@@ -4,7 +4,7 @@
     <navbar></navbar>
     <div class="content">
       <h2>本日話題</h2>
-      <div class="today">
+      <div class="today" @click="$router.push('/todaysTopic')">
         <h3>{{ '#' + topic.title }}</h3>
         <i>{{ topic.message_qty }}</i>
       </div>

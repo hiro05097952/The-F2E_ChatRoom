@@ -1,5 +1,5 @@
 <template>
-  <div class="addWrap" @click="$router.push('tototalk/totoadd')">
+  <div class="addWrap" @click="$router.push('/tototalk/totoadd')">
     <i id="add"></i>
   </div>
 </template>

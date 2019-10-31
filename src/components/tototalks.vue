@@ -22,16 +22,17 @@ export default {
   },
   created() {
     this.axios.get(`${process.env.API}/api/roomlist?type=tototalk`).then((response) => {
-      console.log('偷偷說:', response.data);
+      // console.log('偷偷說:', response.data);
       this.tototalk = response.data;
     });
   },
   computed: {
     sort() {
       if (this.$route.name === 'TotoTalk') {
-        return this.tototalk.slice().sort((a, b) => a.created_time - b.created_time);
+        return this.tototalk.slice().sort((a, b) =>
+          +new Date(b.created_time) - +new Date(a.created_time));
       }
-      return this.tototalk.slice().sort((a, b) => a.message_qty - b.message_qty);
+      return this.tototalk.slice().sort((a, b) => b.message_qty - a.message_qty);
     },
   },
   methods: {

@@ -1,15 +1,15 @@
 <template>
   <ul class="nav">
-    <li :class="{'active' : $route.name === 'Home'}"
+    <li :class="{'active' : $route.name === 'Home' || $route.name === 'AdminHome'}"
     @click.prevent="go('/home')">
-      <a href="#" @click.prevent>{{ !isAdmin ? '首頁' : '名字' }}</a>
+      <a href="#" @click.prevent>{{ !isAdmin ? '首頁' : '使用者' }}</a>
     </li>
-    <li :class="{'active' : $route.name === 'TodaysTopic'}"
+    <li :class="{'active' : $route.name === 'TodaysTopic' || $route.name === 'AdminTopic'}"
     @click.prevent="go('/todaysTopic')">
       <a href="#" @click.prevent>本日話題</a>
     </li>
     <li :class="{'active' : $route.name === 'TotoTalk' ||
-    $route.name === 'TotoChat' || $route.name === 'TotoAdd'}"
+    $route.name === 'TotoChat' || $route.name === 'TotoAdd' || $route.name === 'AdminToto'}"
     @click.prevent="go('/tototalk/totohome')">
       <a href="#" @click.prevent>偷偷說</a>
     </li>
@@ -33,15 +33,11 @@ export default {
       this.isAdmin = true;
       this.$store.commit('setName', 'Admin');
     }
-    // else if (localStorage.getItem('userName')) {
-    // const name = JSON.parse(localStorage.getItem('userName'));
-    // this.$store.commit('setName', name);
-    // }
   },
   methods: {
     go(value) {
       if (this.isAdmin) {
-        this.$router.push(`/admin/${value}`);
+        this.$router.push(`/admin${value}`);
         return;
       }
       this.$router.push(value);

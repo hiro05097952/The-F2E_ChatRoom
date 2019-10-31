@@ -47,7 +47,7 @@ export default {
         vm.name = response.data.map(item => item.sender);
         // 開啟接收 socket 訊息
         vm.sockets.subscribe(sucket, (data) => {
-          console.log(sucket, data);
+          // console.log(sucket, data);
           vm.msg.push(data);
         });
       });

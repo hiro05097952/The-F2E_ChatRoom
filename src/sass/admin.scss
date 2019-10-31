@@ -1,0 +1,228 @@
+#adminIndex, #adminLogin{
+  ul.nav{
+    padding-left: 20px;
+    box-sizing: border-box;
+  }
+  .bk{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 30%;
+    width: 100vw;
+    background: url(../assets/border.svg) center center no-repeat;
+    filter: opacity(0.85);
+    background-size: cover;
+    z-index: -1;
+  }
+}
+.content{
+  padding: 55px 3% 0;
+  box-sizing: border-box;
+  display: flex;
+  .wrap{
+    width: 50%;
+  }
+  h2{
+    font-size: 22px;
+    letter-spacing: 2px;
+    font-weight: 400;
+    line-height: 30px;
+    margin: 20px 0;
+    border-left: 12px solid #ECC15B;
+    padding-left: 10px;
+    font-weight: 500;
+  }
+  .addWrap, .refresh{
+    display: block;
+    input, button{
+      height: 32px;
+      border-radius: 5px;
+      font-size: 16px;
+      width: 100px;
+      letter-spacing: 1.5px;
+      padding-left: 5px;
+      box-sizing: border-box;
+      margin-left: 5px;
+      color: #444444;
+      border: 2px solid teal;
+    }
+    button{
+      background-color: white;
+      padding: 0 5px;
+      width: 90px;
+      border: none;
+      background-color: teal;
+      color: whitesmoke;
+      font-weight: 500;
+      &:hover{
+        border: 2px solid teal;
+        background-color: white;
+        color: teal;
+      }
+    }
+  }
+  .list{
+    border: 3px solid #BDBDBD;
+    padding: 10px 0;
+    border-radius: 5px;
+    width: 85%;
+    text-align: center;
+    margin: 25px 0 0;
+    li{
+      letter-spacing: 1px;
+      color: #444444;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 8px 0;
+      &:nth-child(1){
+        font-weight: 500;
+        font-size: 18px;
+        color: black;
+      }
+      h3{
+        display: inline-block;
+        width: 33%;
+      }
+      h4, button{
+        width: 20%;
+      }
+      button{
+        color: #222222;
+        font-weight: 500;
+        letter-spacing: 1.5px;
+        border-radius: 5px;
+        border: none;
+        width: 50px;
+        margin: 0 5%;
+        height: 30px;
+        border: 2px solid #ECC15B;
+        &:hover{
+          background-color: #ECC15B;
+        }
+      }
+    }
+  }
+  &#adminTopic{
+    .wrap{
+      width: 80%;
+    }
+    .addWrap{
+      input{
+        width: 150px;
+      }
+      button{
+        width: auto;
+        padding: 0 10px;
+      }
+    }
+    .list{
+      h3{
+        width: 25%;
+        span{
+          display: block;
+          font-size: 12px;
+          margin-top: 5px;
+        }
+        &.open{
+          color: teal;
+          font-weight: 500;
+        }
+        &.close{
+          color: rgb(226, 121, 121);
+        }
+      }
+      h4{
+        width: 25%;
+      }
+      button{
+        margin: 0;
+      }
+    }
+  }
+  &#adminToto{
+    .wrap{
+      width: 100%;
+    }
+    .list{
+      width: 100%;
+      h3{
+        width: 20%;
+        word-break: break-all;
+        letter-spacing: 1px;
+        line-height: 20px;
+      }
+      button{
+        margin: 0;
+      }
+    }
+  }
+}
+#adminLogin{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 1px;
+  color: #444444;
+  .loginWrap{
+    width: 50%;
+    height: 50vh;
+    border: 3px solid #BDBDBD;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    box-shadow: 4px 8px 0px #999999;
+  }
+  label{
+    font-weight: 500;
+    margin: 20px 0 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    input{
+      height: 32px;
+      border-radius: 5px;
+      font-size: 16px;
+      width: 50%;
+      letter-spacing: 1.5px;
+      padding-left: 5px;
+      box-sizing: border-box;
+      margin-left: 15px;
+      color: #444444;
+      border: 2px solid #666666;
+      outline: none;
+    }
+  }
+  h2{
+    font-size: 22px;
+    letter-spacing: 2px;
+    font-weight: 400;
+    line-height: 30px;
+    margin: 30px 0 20px 20px;
+    padding-left: 10px;
+    font-weight: 500;
+    align-self: flex-start;
+  }
+  button{
+    color: #ECC15B;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    border-radius: 5px;
+    border: none;
+    width: 20%;
+    min-width: 80px;
+    margin: 40px 0 0 ;
+    height: 30px;
+    border: 2px solid #ECC15B;
+    font-size: 16px;
+    outline: none;
+    &:hover{
+      background-color: #ECC15B;
+      color: whitesmoke;
+    }
+  }
+}
