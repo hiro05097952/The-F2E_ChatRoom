@@ -20,7 +20,6 @@
     "vue-masonry": "^0.11.8",
     "vue-router": "^3.0.1",
     "vue-socket.io": "^3.0.7",
-    "vuefire": "^2.1.2",
     "vuex": "^3.1.1"
   },
   "devDependencies": {

@@ -2,7 +2,6 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 import { VueMasonryPlugin } from 'vue-masonry';
-import { firestorePlugin } from 'vuefire';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import VueSocketIO from 'vue-socket.io';
@@ -13,12 +12,11 @@ import store from './store/store';
 
 Vue.config.productionTip = false;
 Vue.use(VueMasonryPlugin);
-Vue.use(firestorePlugin);
 Vue.use(VueAxios, axios);
 axios.defaults.withCredentials = true;
 // 進入聊天室
 Vue.use(new VueSocketIO({
-  debug: true,
+  // debug: true,
   // connection: 'http://localhost:3000',
   connection: process.env.API,
 }));
@@ -49,6 +47,7 @@ router.beforeEach((to, from, next) => {
   if (to.name === 'Login') {
     const method = from.name === null ? 'refresh' : 'normal';
     axios.get(`${process.env.API}/api/loginstatus/${method}`).then((response) => {
+      // console.log(response);
       if (response.data.success) {
         if (from.name === null) {
           store.commit('setName', response.data.message);
