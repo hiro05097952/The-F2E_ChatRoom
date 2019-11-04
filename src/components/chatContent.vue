@@ -39,7 +39,7 @@ export default {
         sucket = 'getTopicMessage';
       } else {
         url = `${process.env.API}/api/message?type=tototalk&roomid=${this.$route.params.roomID}`;
-        sucket = 'getTotoMessage';
+        sucket = `getToto${this.$route.params.roomID}`;
       }
 
       this.axios.get(url).then((response) => {
